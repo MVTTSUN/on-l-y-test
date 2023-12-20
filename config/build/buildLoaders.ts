@@ -28,6 +28,13 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
   };
 
+  const urlLoader = {
+    test: /\.(woff|woff2)$/,
+    use: {
+      loader: "url-loader",
+    },
+  };
+
   const tsLoader = {
     test: /\.tsx?$/,
     use: [
@@ -44,5 +51,5 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     exclude: /node_modules/,
   };
 
-  return [assetLoader, cssLoader, tsLoader, svgLoader];
+  return [assetLoader, cssLoader, urlLoader, tsLoader, svgLoader];
 }
