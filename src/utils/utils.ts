@@ -35,20 +35,20 @@ const generateFakeData = () => {
     .reverse();
 };
 
-const getPositionThemesInCircle = (circleSize: number) => {
-  const radius = circleSize / 2;
-  const halfRadius = radius / 2;
-  const positionChord =
-    radius - Math.ceil(Math.sqrt(radius ** 2 - halfRadius ** 2));
+const calculateCoordinateInCircle = (count: number, r: number) => {
+  const cx = r;
+  const cy = r;
+  let startAngle = -60;
 
-  return [
-    [0 + positionChord, radius + halfRadius],
-    [radius, circleSize],
-    [circleSize - positionChord, radius + halfRadius],
-    [circleSize - positionChord, halfRadius],
-    [radius, 0],
-    [0 + positionChord, halfRadius],
-  ];
+  return new Array(count).fill(null).map(() => {
+    const angle = 360 / count;
+    const rad = Math.PI / 180;
+    const x = cx + r * Math.cos(startAngle * rad);
+    const y = cy + r * Math.sin(startAngle * rad);
+    startAngle += angle;
+
+    return { x, y };
+  });
 };
 
-export { generateFakeData, getPositionThemesInCircle };
+export { generateFakeData, calculateCoordinateInCircle };

@@ -7,10 +7,10 @@ import {
 import { useResize } from "@/hooks/useResize";
 import { ResetButton, ResetText } from "@/mixins/mixins";
 import { DataTheme } from "@/types/types";
-import { getPositionThemesInCircle } from "@/utils/utils";
+import { calculateCoordinateInCircle } from "@/utils/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import styled, { css } from "styled-components";
 
 type ThemesCircleProps = {
@@ -29,6 +29,10 @@ export function ThemesCircle(props: ThemesCircleProps) {
   } = props;
   const { isLowMediumScreen } = useResize();
   const circleSize = isLowMediumScreen ? CIRCLE_SIZE_SMALL : CIRCLE_SIZE;
+  const coordinates = useMemo(
+    () => calculateCoordinateInCircle(data.length, circleSize / 2),
+    [circleSize]
+  );
 
   const changeThemeIndex = (index: number) => {
     if (!isAnimationActive) {
@@ -47,8 +51,8 @@ export function ThemesCircle(props: ThemesCircleProps) {
       {data.map((theme, index) => (
         <ThemeCircleWrapper
           key={theme.id}
-          $top={getPositionThemesInCircle(circleSize)[index][0]}
-          $left={getPositionThemesInCircle(circleSize)[index][1]}
+          $top={coordinates[index].y}
+          $left={coordinates[index].x}
           className={AnimationClassName.ThemeCircle}
         >
           <ThemeCircleButton

@@ -64,7 +64,9 @@ export function LeadSection() {
           <Year $color={Color.BlueAccent}>{startYear}</Year>
           <Year $color={Color.RoseAccent}>{endYear}</Year>
         </YearsSliceContainer>
-        <ThemeText className={AnimationClassName.ThemeTextMobile}>{currentTheme.name}</ThemeText>
+        <ThemeText className={AnimationClassName.ThemeTextMobile}>
+          {currentTheme.name}
+        </ThemeText>
         <SliderContainer>
           <NavigationThemes
             data={data}

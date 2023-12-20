@@ -30,6 +30,7 @@ export const useAnimationCirclePagination = () => {
     setEndYearHandler,
   }: AnimationProps) => {
     const onStartAnimation = contextSafe(() => {
+      const angle = 360 / data.length;
       const isStart = currentThemeIndex === 0;
       const isEnd = currentThemeIndex === data.length - 1;
       const isBoundaryForward =
@@ -52,8 +53,8 @@ export const useAnimationCirclePagination = () => {
       }
       direction =
         oldCurrentIndex === currentThemeIndex ? Direction.None : direction;
-      const rotateBoundary = isBoundaryForward ? "-=60deg" : "+=60deg";
-      const rotateBoundaryReverse = isBoundaryForward ? "+=60deg" : "-=60deg";
+      const rotateBoundary = isBoundaryForward ? `-=${angle}deg` : `+=${angle}deg`;
+      const rotateBoundaryReverse = isBoundaryForward ? `+=${angle}deg` : `-=${angle}deg`;
       const countStep = Math.abs(currentThemeIndex - oldCurrentIndex);
 
       const startYearTarget = {
@@ -120,7 +121,7 @@ export const useAnimationCirclePagination = () => {
               isBoundaryForward || isBoundaryBackward
                 ? rotateBoundary
                 : `${direction === Direction.Forward ? "-" : "+"}=${
-                    countStep * 60
+                    countStep * angle
                   }deg`,
           },
           SynchAnimation.One
@@ -132,7 +133,7 @@ export const useAnimationCirclePagination = () => {
               isBoundaryForward || isBoundaryBackward
                 ? rotateBoundaryReverse
                 : `${direction === Direction.Forward ? "+" : "-"}=${
-                    countStep * 60
+                    countStep * angle
                   }deg`,
           },
           SynchAnimation.One
