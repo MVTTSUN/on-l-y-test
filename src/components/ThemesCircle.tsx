@@ -5,7 +5,7 @@ import {
   Color,
 } from "@/const/const";
 import { useResize } from "@/hooks/useResize";
-import { ResetButton, ResetText } from "@/mixins/mixins";
+import { ResetButton, ResetList, ResetText } from "@/mixins/mixins";
 import { DataTheme } from "@/types/types";
 import { calculateCoordinateInCircle } from "@/utils/utils";
 import { useGSAP } from "@gsap/react";
@@ -56,6 +56,7 @@ export function ThemesCircle(props: ThemesCircleProps) {
           className={AnimationClassName.ThemeCircle}
         >
           <ThemeCircleButton
+            type="button"
             $isActive={currentThemeIndex === index}
             onClick={() => changeThemeIndex(index)}
           >
@@ -72,7 +73,8 @@ export function ThemesCircle(props: ThemesCircleProps) {
   );
 }
 
-const Container = styled.div<{ $size: number }>`
+const Container = styled.ul<{ $size: number }>`
+  ${ResetList}
   position: absolute;
   z-index: 10;
   top: 215px;
@@ -124,7 +126,7 @@ const ThemeCircleButton = styled.button<{ $isActive: boolean }>`
     `}
 `;
 
-const ThemeCircleWrapper = styled.div<{ $top: number; $left: number }>`
+const ThemeCircleWrapper = styled.li<{ $top: number; $left: number }>`
   cursor: pointer;
   display: flex;
   align-items: center;

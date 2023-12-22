@@ -56,10 +56,10 @@ export function NavigationThemes(props: NavigationThemesProps) {
         /{data.length - 1 < 10 ? `0${data.length}` : data.length}
       </NavigationSliceProgress>
       <ButtonNavigationContainer>
-        <ButtonNavigation onClick={clickBackward}>
+        <ButtonNavigation type="button" onClick={clickBackward}>
           <ArrowLeftNavigation height={isSmallScreen ? 6.25 : 12.5} />
         </ButtonNavigation>
-        <ButtonNavigation onClick={clickForward}>
+        <ButtonNavigation type="button" onClick={clickForward}>
           <ArrowRightNavigation height={isSmallScreen ? 6.25 : 12.5} />
         </ButtonNavigation>
       </ButtonNavigationContainer>

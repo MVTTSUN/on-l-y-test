@@ -42,6 +42,7 @@ export function Slider(props: SliderProps) {
     <Container className={AnimationClassName.Slider}>
       {!isBeginning && (
         <ButtonPagination
+          type="button"
           $isBeginningButton
           onClick={() => swiperRef.current?.slidePrev()}
         >
@@ -70,7 +71,10 @@ export function Slider(props: SliderProps) {
         ))}
       </SwiperStyled>
       {!isEnd && (
-        <ButtonPagination onClick={() => swiperRef.current?.slideNext()}>
+        <ButtonPagination
+          type="button"
+          onClick={() => swiperRef.current?.slideNext()}
+        >
           <ArrowRightPagination height={10} />
         </ButtonPagination>
       )}

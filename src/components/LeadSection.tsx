@@ -46,7 +46,7 @@ export function LeadSection() {
   }, [currentThemeIndex]);
 
   return (
-    <Container ref={containerGSAP}>
+    <Container aria-label="Исторические данные" ref={containerGSAP}>
       <BorderContainer>
         <ThemesCircle
           data={data}

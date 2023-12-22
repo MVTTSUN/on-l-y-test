@@ -53,8 +53,12 @@ export const useAnimationCirclePagination = () => {
       }
       direction =
         oldCurrentIndex === currentThemeIndex ? Direction.None : direction;
-      const rotateBoundary = isBoundaryForward ? `-=${angle}deg` : `+=${angle}deg`;
-      const rotateBoundaryReverse = isBoundaryForward ? `+=${angle}deg` : `-=${angle}deg`;
+      const rotateBoundary = isBoundaryForward
+        ? `-=${angle}deg`
+        : `+=${angle}deg`;
+      const rotateBoundaryReverse = isBoundaryForward
+        ? `+=${angle}deg`
+        : `-=${angle}deg`;
       const countStep = Math.abs(currentThemeIndex - oldCurrentIndex);
 
       const startYearTarget = {
@@ -79,7 +83,11 @@ export const useAnimationCirclePagination = () => {
           onStart: () => setIsAnimationActive(true),
           onComplete: () => setIsAnimationActive(false),
         })
-        .to(`.${AnimationClassName.Slider}`, { opacity: 0 }, SynchAnimation.One)
+        .to(
+          `.${AnimationClassName.Slider}`,
+          { opacity: 0, duration: 0 },
+          SynchAnimation.One
+        )
         .to(
           startYearTarget,
           {

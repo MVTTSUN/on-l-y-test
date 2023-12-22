@@ -23,4 +23,10 @@ const ResetButton = css`
   }
 `;
 
-export { ResetHeading, ResetText, ResetButton };
+const ResetList = css`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`;
+
+export { ResetHeading, ResetText, ResetButton, ResetList };
